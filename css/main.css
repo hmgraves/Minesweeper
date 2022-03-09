@@ -28,6 +28,10 @@ main {
     background-color: rgb(73, 236, 182);
 }
 
+p {
+    font-size: 20px;
+}
+
 table {
     margin: 0;
     border-spacing: 0;
@@ -77,3 +81,6 @@ td:hover {
     background-color: rgb(255, 67, 67);
 }
 
+.one {
+    background-color: orange;
+}
