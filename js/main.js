@@ -23,12 +23,11 @@ console.log(randomMines)
 /*----- game reset button -----*/
 buttonEl.addEventListener('click', function(evt) {
     console.log('reset clicked');
-    init();
+    // init();
 });
 
 /*----- left clicking on a square -----*/
 tbodyEl.addEventListener('click', function(playerLeftClick) {
-    console.log(document.getElementById(playerLeftClick.target.id).attributes.id.value);
 
     let square = document.getElementById(playerLeftClick.target.id).attributes.id.value;
     if (square = randomMines.find(mine => mine === square)) {
@@ -63,22 +62,11 @@ tbodyEl.addEventListener('contextmenu', function(playerRightClick) {
 
 let board = document.querySelectorAll('td');
 
-
-
-// let test = document.getElementById('sq1');
-// test.classList.add('bombed')
-// console.log(test)
-
-// let minedBoard = board.find(num=> randomlyGenerateMines.includes(num))
-
-
-
-
-
-
-
-
-
-
-
-
+/* Timer once first square is clicked */
+tbodyEl.onclick = function(){
+    let secs = 0
+    let time = setInterval(function () {
+        document.getElementById('timer').innerHTML = `Timer: ${secs++}`;
+    }, 1000);
+   this.onclick = null; // Stops timer from activating again. 
+};
