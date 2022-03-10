@@ -10,7 +10,9 @@ body {
     justify-content: center;
     align-items: center;
     background-image: url(https://cdnb.artstation.com/p/assets/images/images/033/752/895/large/sibylle-hell-litegames-minesweeperworld-defaultbg.jpg?1610477693);
-
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 h1 {
@@ -32,12 +34,7 @@ p {
     font-size: 20px;
 }
 
-table {
-    margin: 0;
-    border-spacing: 0;
-}
-
-td {
+.square {
     height: 35px;
     width: 35px;
     background: rgb(170, 215, 80);
@@ -48,6 +45,26 @@ td {
     margin: 0;
     position: relative;
     border: 2px solid rgb(123, 148, 22);
+}
+
+.flagged {
+    background-image: url('../Images/Flag.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;   
+}
+
+table tr td{
+    border: 2px solid rgb(123, 148, 22);
+    background: rgb(80, 213, 215);
+    width: 25px;
+    height: 25px;
+    text-align: center;
+}
+
+td.clicked {
+    background: #371ea7;
+    color: white;
 }
 
 button {
@@ -66,12 +83,7 @@ td:hover {
     opacity: 0.5;
 }
 
-.flagged {
-    background-image: url('../Images/Flag.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;   
-}
+
 
 .bombed {
     background-image: url('../Images/bomb.png');
@@ -81,6 +93,19 @@ td:hover {
     background-color: rgb(255, 67, 67);
 }
 
-.one {
+/* .one {
     background-color: orange;
+    background-image: url(https://www.clipartmax.com/png/full/80-804791_clipart-of-number-1-number-1-clipart-black-and-white.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
+.two {
+    background-color: blueviolet;
+    background-image: url(https://www.clipartmax.com/png/full/15-157837_number-2-clip-art-clip-art-number-2.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+} */
+
