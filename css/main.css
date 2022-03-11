@@ -10,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     background-image: url(https://cdnb.artstation.com/p/assets/images/images/033/752/895/large/sibylle-hell-litegames-minesweeperworld-defaultbg.jpg?1610477693);
-    background-size: cover;
+    background-size: 210vh;
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -31,7 +31,8 @@ main {
 }
 
 p {
-    font-size: 20px;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .square {
