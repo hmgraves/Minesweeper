@@ -111,9 +111,9 @@ $(document).ready(function () {
 
     // shows all mines if one mine is clicked 
     function showMines() {
-        for (let i = 0; i < 10; i++) {
-            for (let j = 0; j < 10; j++) {
-                let cell = table.rows[i].cells[j];
+        for (let r = 0; r < 10; r++) {
+            for (let c = 0; c < 10; c++) {
+                let cell = table.rows[r].cells[c];
                 if (cell.getAttribute('has-mine') === 'true') {
                     cell.className = 'bombed';
                 }
@@ -124,9 +124,9 @@ $(document).ready(function () {
     // checks each cell to see if game has been won
     function checkWin() {
         let gameOver = true;
-        for (let i = 0; i < 10; i++) {
-            for (let j = 0; j < 10; j++) {
-                if ((table.rows[i].cells[j].getAttribute('has-mine') === 'false') && (table.rows[i].cells[j].innerHTML === "")) {
+        for (let r = 0; r < 10; r++) {
+            for (let c = 0; c < 10; c++) {
+                if ((table.rows[r].cells[c].getAttribute('has-mine') === 'false') && (table.rows[r].cells[c].innerHTML === "")) {
                     gameOver = false;
                 }
             }
