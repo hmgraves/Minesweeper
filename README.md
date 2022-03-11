@@ -1,5 +1,5 @@
 # Minesweeper
-[Check out Minesweepter on GitHub Pages](https://hmgraves.github.io/Minesweeper/)
+[Check out Minesweeper on GitHub Pages](https://hmgraves.github.io/Minesweeper/)
 ## Introduction
 
 Minesweeper is the second game created by Hannah while in her second and third week at General Assembly. Minesweeper was originally released in 1989 by Curt Johnson and continues to be a popular game to this day. 
