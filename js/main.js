@@ -1,24 +1,41 @@
 /*----- CONSTANTS -----*/
-$(document).ready(function() {
+$(document).ready(function () {
 
     const table = document.getElementById('table');
 
     createBoard();
 
-    /*----- app's state (VARIABLES) -----*/
-    const mines = 10; 
-    let flags = 0;
-    let gameOver = false;
-
     /*----- CACHED ELEMENTS  -----*/
     const tbodyEl = document.querySelector('tbody');
     const buttonEl = document.querySelector('button');
 
-    // checkWin();
+    /** TIMER */
+    let begin;
+    let end;
+    let timer;
+
+    $(tbodyEl).one('click', () => {
+        begin = new Date();
+        timer = setInterval(update, 1000);
+    });
+
+    const update = () => {
+        end = new Date();
+        elapsed = (end - begin);
+        let min = Math.floor((elapsed / 1000 / 60) << 0);
+        let sec = Math.floor((elapsed / 1000) % 60);
+
+        document.getElementById('timer').innerHTML = `Timer: ${min} : ${sec}`;
+    }
+
+    /*----- app's state (VARIABLES) -----*/
+    const mines = 10;
+    let flags = 0;
+    let gameOver = false;
 
     /*----- EVENT LISTENERS -----*/
     /*----- game reset button -----*/
-    buttonEl.addEventListener('click', function(evt) {
+    buttonEl.addEventListener('click', function (evt) {
         window.location.reload();
     });
 
@@ -34,11 +51,8 @@ $(document).ready(function() {
             document.getElementById('flags-placed').innerHTML = 'Game Over You Lose!';
             gameOver = true;
             showMines();
-            $('.end-game').off() // turns off left click
-            document.getElementById('timer').remove()
-            document.getElementsByClassName('timer').innerHTML = 'test'
+            clearInterval(timer);
             checkWin();
-            ;
         } else {
             element.classList.add('clicked');
             cellOnClick(playerLeftClick.target);
@@ -46,22 +60,22 @@ $(document).ready(function() {
     }
 
     /*----- right clicking on a square to add/remove flag-----*/
-    tbodyEl.addEventListener('contextmenu', function(playerRightClick) {
+    tbodyEl.addEventListener('contextmenu', function (playerRightClick) {
         const element = document.getElementById(playerRightClick.target.id);
 
         if (element.className != 'flagged') {
-                element.classList.add('flagged');
-                flags++;
-                document.getElementById('flags-placed').innerHTML = 'Flags placed: ' + (flags); // updates mine count
-            } else { 
-                element.classList.remove('flagged');  // removes flag
-                flags--;
-                document.getElementById('flags-placed').innerHTML = 'Flags placed: ' + (flags--); // updates mine count
-            }
+            element.classList.add('flagged');
+            flags++;
+            document.getElementById('flags-placed').innerHTML = 'Flags placed: ' + (flags); // updates flag count
+        } else {
+            element.classList.remove('flagged');  // removes flag
+            flags--;
+            document.getElementById('flags-placed').innerHTML = 'Flags placed: ' + (flags--); // updates flag count
+        }
 
         playerRightClick.preventDefault();
         /* Return false so that context menu does not pop up */
-        return false; 
+        return false;
     }, false);
 
 
@@ -82,7 +96,7 @@ $(document).ready(function() {
                 cell.setAttributeNode(id);
             }
         }
-        randomlyGenerateMineCoordinates()
+        randomlyGenerateMineCoordinates();
     }
 
     // generated randomly placed mines on game board
@@ -98,7 +112,7 @@ $(document).ready(function() {
     // shows all mines if one mine is clicked 
     function showMines() {
         for (let i = 0; i < 10; i++) {
-            for(let j = 0; j < 10; j++) {
+            for (let j = 0; j < 10; j++) {
                 let cell = table.rows[i].cells[j];
                 if (cell.getAttribute('has-mine') === 'true') {
                     cell.className = 'bombed';
@@ -111,10 +125,10 @@ $(document).ready(function() {
     function checkWin() {
         let gameOver = true;
         for (let i = 0; i < 10; i++) {
-            for(let j = 0; j < 10; j++) {
+            for (let j = 0; j < 10; j++) {
                 if ((table.rows[i].cells[j].getAttribute('has-mine') === 'false') && (table.rows[i].cells[j].innerHTML === "")) {
-                gameOver = false;
-                } 
+                    gameOver = false;
+                }
             }
         }
         if (gameOver) {
@@ -130,34 +144,33 @@ $(document).ready(function() {
             showMines();
         } else {
             cell.className === 'clicked';
-            cell.classList.add('clicked'); //
+            cell.classList.add('clicked');
 
             //Count and display the number of adjacent mines
             let mineCount = 0;
             let cellRow = cell.parentNode.rowIndex;
             let cellColumn = cell.cellIndex;
 
-            for (let r = Math.max(cellRow -1, 0); r <= Math.min(cellRow + 1, 9); r++) {
-                for(let c = Math.max(cellColumn - 1, 0); c <= Math.min(cellColumn + 1, 9); c++) {
+            for (let r = Math.max(cellRow - 1, 0); r <= Math.min(cellRow + 1, 9); r++) {
+                for (let c = Math.max(cellColumn - 1, 0); c <= Math.min(cellColumn + 1, 9); c++) {
                     if (table.rows[r].cells[c].getAttribute('has-mine') === 'true') {
                         mineCount++;
                     }
                 }
             }
             cell.innerHTML = mineCount;
-            if (mineCount == 0) { 
+            if (mineCount == 0) {
                 // Reveal nearby cells
                 for (let r = Math.max(cellRow - 1, 0); r <= Math.min(cellRow + 1, 9); r++) {
-                    for(let c = Math.max(cellColumn - 1, 0); c <= Math.min(cellColumn + 1, 9); c++) {
+                    for (let c = Math.max(cellColumn - 1, 0); c <= Math.min(cellColumn + 1, 9); c++) {
                         // Recursive Call to search through all cells
-                        if (table.rows[r].cells[c].innerHTML === ""){
+                        if (table.rows[r].cells[c].innerHTML === "") {
                             cellOnClick(table.rows[r].cells[c]);
                         }
                     }
                 }
             }
-        checkWin();
+            checkWin();
         }
     }
-
-})
+});
