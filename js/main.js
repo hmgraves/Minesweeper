@@ -52,6 +52,7 @@ $(document).ready(function () {
             gameOver = true;
             showMines();
             clearInterval(timer);
+            $('.end-game').off()
             checkWin();
         } else {
             element.classList.add('clicked');
