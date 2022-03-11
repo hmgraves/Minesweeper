@@ -35,19 +35,6 @@ p {
     font-weight: bold;
 }
 
-.square {
-    height: 35px;
-    width: 35px;
-    background: rgb(170, 215, 80);
-    display: inline-block;
-    text-align: center;
-    line-height: 25vw;
-    font-size: 20vw;
-    margin: 0;
-    position: relative;
-    border: 2px solid rgb(123, 148, 22);
-}
-
 .flagged {
     background-image: url('../Images/Flag.png');
     background-size: contain;
@@ -84,8 +71,6 @@ td:hover {
     opacity: 0.5;
 }
 
-
-
 .bombed {
     background-image: url('../Images/bomb.png');
     background-size: contain;
@@ -93,20 +78,3 @@ td:hover {
     background-repeat: no-repeat;
     background-color: rgb(255, 67, 67);
 }
-
-/* .one {
-    background-color: orange;
-    background-image: url(https://www.clipartmax.com/png/full/80-804791_clipart-of-number-1-number-1-clipart-black-and-white.png);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.two {
-    background-color: blueviolet;
-    background-image: url(https://www.clipartmax.com/png/full/15-157837_number-2-clip-art-clip-art-number-2.png);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-} */
-
