@@ -12,14 +12,9 @@ const mines = 10;
 let flags = 0;
 let gameOver = false;
 
-console.log(`body gameOver: ${gameOver}`);
-
 /*----- CACHED ELEMENTS  -----*/
 const tbodyEl = document.querySelector('tbody');
 const buttonEl = document.querySelector('button');
-
-
-
 
 // checkWin();
 
@@ -77,18 +72,6 @@ tbodyEl.addEventListener('contextmenu', function(playerRightClick) {
 
 /*----- FUNCTIONS -----*/
 
-
-tbodyEl.onclick = function() {
-    let secs = 0;
-    let time = setInterval(function () {
-        document.getElementById('timer').innerHTML = `Timer: ${secs++}`;
-    }, 1000);
-    this.onclick = null; // Stops timer from activating again on additional clicks.
-}    
-
-
-
-
 // Creates game board
 function createBoard() {
     table.innerHTML = "";
@@ -114,7 +97,6 @@ function randomlyGenerateMineCoordinates() {
         let column = Math.floor(Math.random() * 10);
         let cell = table.rows[row].cells[column];
         cell.setAttribute('has-mine', true);
-        console.log('this is m ' + m);
     }
 }
 
@@ -132,7 +114,6 @@ function showMines() {
 
 function checkWin() {
     let gameOver = true;
-    console.log(`checkWin gameOver: ${gameOver}`);
       for (let i = 0; i < 10; i++) {
         for(let j = 0; j < 10; j++) {
           if ((table.rows[i].cells[j].getAttribute('has-mine') === 'false') && (table.rows[i].cells[j].innerHTML === "")) {
