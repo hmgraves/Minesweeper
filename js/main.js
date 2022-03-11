@@ -134,6 +134,7 @@ $(document).ready(function () {
         if (gameOver) {
             document.getElementById('flags-placed').innerHTML = 'Game Over You Win!';
             showMines();
+            clearInterval(timer);
         }
     }
 
